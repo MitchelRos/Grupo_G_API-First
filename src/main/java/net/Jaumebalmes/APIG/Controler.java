@@ -1,9 +1,7 @@
 package net.Jaumebalmes.APIG;
 
 import java.time.LocalDate;
-import java.time.Month;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class Controler {
-	private ArrayList<Alumno> alumneList = new ArrayList<Alumno>();
+	private HashMap<Integer, Alumno> alumneList = new HashMap<>();
 	
 	@GetMapping("/")
 	public String home() {
@@ -22,7 +20,7 @@ public class Controler {
 	
 	
 	@GetMapping("alumnes")
-	public List<Alumno> getAlumnos(){
+	public HashMap<Integer, Alumno> getAlumnos(){
 		generateAlumnes();
 		return alumneList;
 	}
@@ -30,18 +28,30 @@ public class Controler {
 	
 	@GetMapping("alumne/{nId}")
 	public Alumno getAlumne(@PathVariable int nId){
-		generateAlumnes();
-		return alumneList.get(nId-1);
+		generateAlumnes();	
+		return alumneList.get(nId);
 	}
 
 
 	private void generateAlumnes() {
-		alumneList.add(new Alumno(1,"LLuc","Pirilla",LocalDate.of(2001, 3, 21)));
-		alumneList.add(new Alumno(2,"Kevin","Pirilla",LocalDate.of(199, 1, 19)));
-		alumneList.add(new Alumno(3,"Joan","Pirilla",LocalDate.of(1997, 4, 11)));
-		alumneList.add(new Alumno(4,"Raul","Parejo",LocalDate.of(2002, 1, 29)));
-		alumneList.add(new Alumno(5,"Luis","Pirilla",LocalDate.of(1995, 3, 15)));
-		alumneList.add(new Alumno(6,"Mitchel","Pirilla",LocalDate.of(1992, 1, 20)));
+		Alumno a1 = new Alumno(12,"LLuc","Pirilla",LocalDate.of(2001, 3, 21));
+		Alumno a2 = new Alumno(42,"Kevin","Pirilla",LocalDate.of(199, 1, 19));
+		Alumno a3 = new Alumno(30,"Joan","Pirilla",LocalDate.of(1997, 4, 11));
+		Alumno a4 = new Alumno(10,"Joan","Pirilla",LocalDate.of(1997, 4, 11));
+		Alumno a5 = new Alumno(40,"Raul","Parejo",LocalDate.of(2002, 1, 29));
+		Alumno a6 = new Alumno(23,"Luis","Pirilla",LocalDate.of(1995, 3, 15));
+		Alumno a7 = new Alumno(60,"Mitchel","Pirilla",LocalDate.of(1992, 1, 20));
+		Alumno a8 = new Alumno(13,"Benito","Camela",LocalDate.of(1997, 4, 11));
+		
+		alumneList.put(a1.getId(), a1);
+		alumneList.put(a2.getId(), a2);
+		alumneList.put(a3.getId(), a3);
+		alumneList.put(a4.getId(), a4);
+		alumneList.put(a5.getId(), a5);
+		alumneList.put(a6.getId(), a6);
+		alumneList.put(a7.getId(), a7);
+		alumneList.put(a8.getId(), a8);
+
 
 	}
 	
