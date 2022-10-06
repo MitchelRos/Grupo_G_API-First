@@ -34,14 +34,15 @@ public class Controler {
 
 
 	private void generateAlumnes() {
-		Alumno a1 = new Alumno(12,"LLuc","Pirilla",LocalDate.of(2001, 3, 21));
-		Alumno a2 = new Alumno(42,"Kevin","Pirilla",LocalDate.of(199, 1, 19));
-		Alumno a3 = new Alumno(30,"Joan","Pirilla",LocalDate.of(1997, 4, 11));
-		Alumno a4 = new Alumno(10,"Joan","Pirilla",LocalDate.of(1997, 4, 11));
-		Alumno a5 = new Alumno(40,"Raul","Parejo",LocalDate.of(2002, 1, 29));
-		Alumno a6 = new Alumno(23,"Luis","Pirilla",LocalDate.of(1995, 3, 15));
-		Alumno a7 = new Alumno(60,"Mitchel","Pirilla",LocalDate.of(1992, 1, 20));
-		Alumno a8 = new Alumno(13,"Benito","Camela",LocalDate.of(1997, 4, 11));
+		Alumno a1 = new Alumno(1,"LLuc","Pirilla",LocalDate.of(2001, 3, 21));
+		Alumno a2 = new Alumno(2,"Kevin","Pirilla",LocalDate.of(199, 1, 19));
+		Alumno a3 = new Alumno(3,"Joan","Pirilla",LocalDate.of(1997, 4, 11));
+		Alumno a4 = new Alumno(4,"Joan","Pirilla",LocalDate.of(1997, 4, 11));
+		Alumno a5 = new Alumno(5,"Raul","Parejo",LocalDate.of(2002, 1, 29));
+		Alumno a6 = new Alumno(6,"Luis","Pirilla",LocalDate.of(1995, 3, 15));
+		Alumno a7 = new Alumno(7,"Mitchel","Pirilla",LocalDate.of(1992, 1, 20));
+		Alumno a8 = new Alumno(8,"Benito","Camela",LocalDate.of(1997, 4, 11));
+		Alumno a9 = new Alumno(100,"Cake","Is A LIE",LocalDate.of(0104, 29, 2));
 		
 		alumneList.put(a1.getId(), a1);
 		alumneList.put(a2.getId(), a2);
