@@ -17,28 +17,29 @@ import org.springframework.web.bind.annotation.RestController;
 public class Controler {
 	private HashMap<Integer, Alumno> alumneList = new HashMap<>();
 	
+	// Te muestra en web el html cuanod pones "..../" al final de local host
 	@GetMapping("/")
 	public String home() {
-		return htmlString();
+		return htmlString("src\\main\\resources\\static\\Index.html");
 
 	}
-	
-	
-	
+
+	//Te muestra cuando pones "..../alumnes" a toodos los alumnos
 	@GetMapping("alumnes")
 	public HashMap<Integer, Alumno> getAlumnos(){
 		generateAlumnes();
 		return alumneList;
 	}
-	
-	
+
+	//Te muestra al poner un id al final del link el alumno en concreto
 	@GetMapping("alumne/{nId}")
 	public Alumno getAlumne(@PathVariable int nId){
 		generateAlumnes();	
 		return alumneList.get(nId);
 	}
 
-	private String htmlString() {
+	//Te devuelve el string del archivo que has puesto dentro cuando lo llamas
+	private String htmlString(String link) {
 		StringBuilder html=new StringBuilder();
 		String results="";
 		try (FileReader flrd = new FileReader("src\\main\\resources\\static\\Index.html")) {
@@ -60,6 +61,9 @@ public class Controler {
 		return results;
 	}
 
+
+
+	//crea los datos de los alumnos
 	private void generateAlumnes() {
 		Alumno a1 = new Alumno(1,"LLuc","Pirilla",LocalDate.of(2001, 3, 21));
 		Alumno a2 = new Alumno(2,"Kevin","Pirilla",LocalDate.of(199, 1, 19));
