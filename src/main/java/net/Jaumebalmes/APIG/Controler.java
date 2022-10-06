@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Controler {
 	private HashMap<Integer, Alumno> alumneList = new HashMap<>();
+	//private HashMap<Integer, UF> ufList = new HashMap<>();
 
 	// Te muestra en web el html cuanod pones "..../" al final de local host
 	@GetMapping("/")
