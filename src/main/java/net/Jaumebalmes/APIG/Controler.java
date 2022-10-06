@@ -42,7 +42,7 @@ public class Controler {
 	private String htmlString(String link) {
 		StringBuilder html=new StringBuilder();
 		String results="";
-		try (FileReader flrd = new FileReader("src\\main\\resources\\static\\Index.html")) {
+		try (FileReader flrd = new FileReader(link)) {
 			try(BufferedReader bfrd = new BufferedReader(flrd)){
 				String val;
 				while ((val=bfrd.readLine()) != null) {
