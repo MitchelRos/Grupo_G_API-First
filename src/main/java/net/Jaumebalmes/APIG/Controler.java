@@ -42,7 +42,7 @@ public class Controler {
 		Alumno a6 = new Alumno(6,"Luis","Pirilla",LocalDate.of(1995, 3, 15));
 		Alumno a7 = new Alumno(7,"Mitchel","Pirilla",LocalDate.of(1992, 1, 20));
 		Alumno a8 = new Alumno(8,"Benito","Camela",LocalDate.of(1997, 4, 11));
-		Alumno a9 = new Alumno(100,"Cake","Is A LIE",LocalDate.of(0104, 29, 2));
+		Alumno a9 = new Alumno(100,"Cake","Is A LIE",LocalDate.of(1111, 1, 12));
 		
 		alumneList.put(a1.getId(), a1);
 		alumneList.put(a2.getId(), a2);
