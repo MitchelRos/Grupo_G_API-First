@@ -52,7 +52,7 @@ public class Controler {
 		alumneList.put(a6.getId(), a6);
 		alumneList.put(a7.getId(), a7);
 		alumneList.put(a8.getId(), a8);
-
+		alumneList.put(a9.getId(), a9);
 
 	}
 	
