@@ -1,47 +1,50 @@
 package net.Jaumebalmes.APIG;
 
-import java.sql.Date;
+import java.util.Date;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 class Alumno{
 	private int id;
 	private String name;
 	private String surname;
-	private Date birthDate;
-	private Date horaEntrada;
-	private Date horaSortida;
+	private LocalDateTime birthDate;
+	private LocalDateTime timeEntry;
+	private LocalDateTime timeExit;
 	private UF modul;
+
 
 	public Alumno() {
 		this.id = 0;
 		this.name = "Ejemplo";
 		this.surname = "Ejemplo";
-		this.birthDate = getDateExample();
-		this.horaEntrada = getDateExample();
-		this.horaSortida = getDateExample();
+		this.birthDate = LocalDateTime.now();
+		this.timeEntry = LocalDateTime.now();
+		this.timeExit = LocalDateTime.now();
 		this.modul = new UF();
 	}
 
 
-	public Alumno(int id, String name, String surname, Date birthDate, Date horaEntrada,
+	public Alumno(int id, String name, String surname, LocalDateTime birthDate, LocalDateTime horaEntrada,
 			Date horaSortida, UF modul) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.surname = surname;
 		this.birthDate = birthDate;
-		this.horaEntrada = horaEntrada;
-		this.horaSortida = horaSortida;
+		this.timeEntry = timeEntry;
+		this.timeExit = timeExit;
 		this.modul = modul;
 	}
 
-	public Alumno(int id, String name, String surname, Date birthDate) {
+	public Alumno(int id, String name, String surname, LocalDate birthDate) {
 		this.id = id;
 		this.name = name;
 		this.surname = surname;
-		this.birthDate = birthDate;
+		this.birthDate = LocalDateTime.now();
 	}
 
 	public int getId() {
@@ -62,26 +65,28 @@ class Alumno{
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
-	public Date getBirthDate() {
+	public LocalDateTime getBirthDate() {
 		return birthDate;
 	}
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(LocalDateTime birthDate) {
 		this.birthDate = birthDate;
 	}
 
-	private Date getDateExample() {
-		String date_s = "2011-01-18 12:55:15"; 
-		SimpleDateFormat dt = new SimpleDateFormat("yyyyy-mm-dd hh:mm:ss"); 
-		Date date;
-		try {
-			date = (Date) dt.parse(date_s);
-			return date;
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
+	private String getDateString(LocalDateTime myDateObj) {
+		//LocalDateTime myDateObj = LocalDateTime.now();  
+		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");  
+		return myDateObj.format(myFormatObj);  
+		
 
-		}
 	}
+
+
+	@Override
+	public String toString() {
+		return "Alumno [id=" + id + ", name=" + name + ", surname=" + surname + ", birthDate=" + ""
+				+ ", timeEntry=" + getDateString(timeEntry) + ", timeExit=" + getDateString(timeExit) + ", modul=" + modul + "]";
+	}
+
+
 
 }
