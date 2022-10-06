@@ -1,7 +1,13 @@
 package net.Jaumebalmes.APIG;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.Buffer;
 import java.time.LocalDate;
 import java.util.HashMap;
+
+import javax.naming.spi.DirStateFactory.Result;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,8 +19,8 @@ public class Controler {
 	
 	@GetMapping("/")
 	public String home() {
-		String html_page = "<!DOCTYPE html><html><head><title>Home</title></head><body>Examples paths<ul><li> <a href=\"/alumnes\">Alumnes</a></li><li> <a href=\"/alumne/1\">Alumnes:id</a> </li></ul></ul></body></html>";
-		return html_page;
+		return htmlString();
+
 	}
 	
 	
@@ -32,6 +38,27 @@ public class Controler {
 		return alumneList.get(nId);
 	}
 
+	private String htmlString() {
+		StringBuilder html=new StringBuilder();
+		String results="";
+		try (FileReader flrd = new FileReader("src\\main\\resources\\static\\Index.html")) {
+			try(BufferedReader bfrd = new BufferedReader(flrd)){
+				String val;
+				while ((val=bfrd.readLine()) != null) {
+					html.append(val);
+				}
+				results = html.toString();
+			}catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return results;
+	}
 
 	private void generateAlumnes() {
 		Alumno a1 = new Alumno(1,"LLuc","Pirilla",LocalDate.of(2001, 3, 21));
