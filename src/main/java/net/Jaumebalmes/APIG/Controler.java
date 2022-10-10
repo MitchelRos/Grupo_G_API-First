@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class Controler {
-	private HashMap<Integer, Alumno> alumneList = new HashMap<>();
-	//private HashMap<Integer, UF> ufList = new HashMap<>();
+	private HashMap<Integer, Student> alumneList = new HashMap<>();
+	// private HashMap<Integer, UF> ufList = new HashMap<>();
 
 	// Te muestra en web el html cuanod pones "..../" al final de local host
 	@GetMapping("/")
@@ -26,32 +26,46 @@ public class Controler {
 
 	}
 
-	//Te muestra cuando pones "..../alumnes" a toodos los alumnos
-	@GetMapping("alumnes")
-	public HashMap<Integer, Alumno> getAlumnos(){
+	// Te muestra cuando pones "..../alumnes" a toodos los alumnos
+	@GetMapping("students")
+	public HashMap<Integer, Student> getAlumnos() {
 		alumneList = GenerateFakeData.generateAlumnes();
 		return alumneList;
 	}
 
-	//Te muestra al poner un id al final del link el alumno en concreto
-	@GetMapping("alumne/{nId}")
-	public Alumno getAlumne(@PathVariable int nId){
-		alumneList = GenerateFakeData.generateAlumnes();	
+	@GetMapping("students/{mGroup}")
+	public HashMap<Integer, Student> getStudentsByGroup(@PathVariable String mGroup) {
+		alumneList = GenerateFakeData.generateAlumnes();
+		//Lista auxiliar para devolver solo la query por grupo
+		HashMap<Integer, Student> groupAnimeList = new HashMap<>();
+		for (Student s : alumneList.values()) {
+			//La busqueda se hace en mayuscula para evitar diferencias entre mayus y minus.
+			if ((s.getGrup().toUpperCase()).matches((mGroup.toUpperCase()))) {
+				groupAnimeList.put(s.getId(), s);
+			}
+		}
+		return groupAnimeList;
+	}
+
+	// Te muestra al poner un id al final del link el alumno en concreto
+	@GetMapping("student/{nId}")
+	public Student getAlumne(@PathVariable int nId) {
+		alumneList = GenerateFakeData.generateAlumnes();
 		return alumneList.get(nId);
 	}
 
-	//Te devuelve el string del archivo que has puesto dentro cuando lo llamas
+	// Te devuelve el string del archivo que has puesto dentro cuando lo llamas
 	private String htmlString(String link) {
-		StringBuilder html=new StringBuilder();
-		String results="";
+		StringBuilder html = new StringBuilder();
+		String results = "";
 		try (FileReader flrd = new FileReader(link)) {
-			try(BufferedReader bfrd = new BufferedReader(flrd)){
+			try (BufferedReader bfrd = new BufferedReader(flrd)) {
 				String val;
-				while ((val=bfrd.readLine()) != null) {
+				while ((val = bfrd.readLine()) != null) {
 					html.append(val);
 				}
 				results = html.toString();
-			}catch (IOException e) {
+			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -62,14 +76,5 @@ public class Controler {
 		}
 		return results;
 	}
-
-
-
-
-
-
-
-
-
 
 }
