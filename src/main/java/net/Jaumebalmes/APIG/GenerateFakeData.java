@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class GenerateFakeData {
     //crea los datos de los alumnos
-    private static HashMap<Integer, Student> alumneList = new HashMap<>();
+    private static HashMap<Integer, Student> studentList = new HashMap<>();
     
     //Genera alumnos fake para la api
     public static HashMap<Integer, Student> generateStudents() {
@@ -17,15 +17,15 @@ public class GenerateFakeData {
         Student a7 = new Student(13,"Benito","Camela","benitocamela@hub.com","DAW2");
         Student a8 = new Student(100,"Cake","Is A LIE","cakeisalie@meme.com","ASIX2");
 
-        alumneList.put(a1.getId(), a1);
-        alumneList.put(a2.getId(), a2);
-        alumneList.put(a3.getId(), a3);
-        alumneList.put(a4.getId(), a4);
-        alumneList.put(a5.getId(), a5);
-        alumneList.put(a6.getId(), a6);
-        alumneList.put(a7.getId(), a7);
-        alumneList.put(a8.getId(), a8);
-        return alumneList;
+        studentList.put(a1.getId(), a1);
+        studentList.put(a2.getId(), a2);
+        studentList.put(a3.getId(), a3);
+        studentList.put(a4.getId(), a4);
+        studentList.put(a5.getId(), a5);
+        studentList.put(a6.getId(), a6);
+        studentList.put(a7.getId(), a7);
+        studentList.put(a8.getId(), a8);
+        return studentList;
     }
     
 }
