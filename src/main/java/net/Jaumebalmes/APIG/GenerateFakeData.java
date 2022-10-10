@@ -7,7 +7,7 @@ public class GenerateFakeData {
     private static HashMap<Integer, Student> alumneList = new HashMap<>();
     
     //Genera alumnos fake para la api
-    public static HashMap<Integer, Student> generateAlumnes() {
+    public static HashMap<Integer, Student> generateStudents() {
         Student a1 = new Student(1,"Kevin","Sama Villegas","kevin@sama.com","DAW2");
         Student a2 = new Student(2,"Mitchel","Rosado","mitchel@tailand.com","DAW2");
         Student a3 = new Student(3,"Nagisa","Shiota ","nagishiota@clasee.com","DAM1");

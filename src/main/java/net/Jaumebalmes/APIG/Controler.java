@@ -28,18 +28,18 @@ public class Controler {
 
 	// Te muestra cuando pones "..../alumnes" a toodos los alumnos
 	@GetMapping("students")
-	public HashMap<Integer, Student> getAlumnos() {
-		alumneList = GenerateFakeData.generateAlumnes();
+	public HashMap<Integer, Student> getStudents() {
+		alumneList = GenerateFakeData.generateStudents();
 		return alumneList;
 	}
 
 	@GetMapping("students/{mGroup}")
 	public HashMap<Integer, Student> getStudentsByGroup(@PathVariable String mGroup) {
-		alumneList = GenerateFakeData.generateAlumnes();
-		//Lista auxiliar para devolver solo la query por grupo
+		alumneList = GenerateFakeData.generateStudents();
+		// Lista auxiliar para devolver solo la query por grupo
 		HashMap<Integer, Student> groupAnimeList = new HashMap<>();
 		for (Student s : alumneList.values()) {
-			//La busqueda se hace en mayuscula para evitar diferencias entre mayus y minus.
+			// La busqueda se hace en mayuscula para evitar diferencias entre mayus y minus.
 			if ((s.getGrup().toUpperCase()).matches((mGroup.toUpperCase()))) {
 				groupAnimeList.put(s.getId(), s);
 			}
@@ -50,7 +50,7 @@ public class Controler {
 	// Te muestra al poner un id al final del link el alumno en concreto
 	@GetMapping("student/{nId}")
 	public Student getAlumne(@PathVariable int nId) {
-		alumneList = GenerateFakeData.generateAlumnes();
+		alumneList = GenerateFakeData.generateStudents();
 		return alumneList.get(nId);
 	}
 
