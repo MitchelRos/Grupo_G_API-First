@@ -3,12 +3,7 @@ package net.Jaumebalmes.APIG;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.HashMap;
-
-import java.nio.Buffer;
-import javax.naming.spi.DirStateFactory.Result;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
