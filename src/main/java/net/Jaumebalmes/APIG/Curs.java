@@ -4,7 +4,7 @@ public class Curs {
     private int id;
     private String cicle;
     private int curs;
-    private String grup = cicle + curs;
+    private String grup;
     private int aula;
 
     public Curs() {
