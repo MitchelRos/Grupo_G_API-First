@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Controler {
 	private HashMap<Integer, Student> studentList = new HashMap<>();
+	private HashMap<Integer, Curs> cursList = new HashMap<>();
+
 	// private HashMap<Integer, UF> ufList = new HashMap<>();
 
 	// Te muestra en web el html cuanod pones "..../" al final de local host
@@ -26,6 +28,18 @@ public class Controler {
 	public HashMap<Integer, Student> getStudents() {
 		studentList = GenerateFakeData.generateStudents();
 		return studentList;
+	}
+
+	@GetMapping("cursos")
+	public HashMap<Integer, Curs> getCursos() {
+		cursList = GenerateFakeData.generateCurs();
+		return cursList;
+	}
+
+	@GetMapping("cursos/{nId}")
+	public Curs getCurs(@PathVariable int nId) {
+		cursList = GenerateFakeData.generateCurs();
+		return cursList.get(nId);
 	}
 
 	@GetMapping("students/{mGroup}")
