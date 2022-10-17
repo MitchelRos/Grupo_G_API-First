@@ -1,11 +1,23 @@
 package net.Jaumebalmes.APIG;
 
+
 class Student{
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity //taula db
+class Student{
+  @Id //clau taula de la db
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String name;
 	private String surname;
 	private String email;
 	private String grup;
+  
     public Student(int id, String name, String surname, String email, String grup) {
         super();
         this.id = id;

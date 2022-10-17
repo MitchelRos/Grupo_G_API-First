@@ -3,6 +3,7 @@ package net.Jaumebalmes.APIG;
 import java.util.HashMap;
 
 public class GenerateFakeData {
+
     // crea los datos de los alumnos
     private static HashMap<Integer, Student> studentList = new HashMap<>();
     private static HashMap<Integer, Curs> cursList = new HashMap<>();
@@ -17,6 +18,7 @@ public class GenerateFakeData {
         Student a6 = new Student(7, "Lluc", "Pirilla", "llucpirilla@arrels.com", "DAM2");
         Student a7 = new Student(13, "Benito", "Camela", "benitocamela@hub.com", "DAW2");
         Student a8 = new Student(100, "Cake", "Is A LIE", "cakeisalie@meme.com", "ASIX2");
+
 
         studentList.put(a1.getId(), a1);
         studentList.put(a2.getId(), a2);
@@ -49,5 +51,6 @@ public class GenerateFakeData {
         cursList.put(c8.getId(), c8);
         return cursList;
     }
+
 
 }

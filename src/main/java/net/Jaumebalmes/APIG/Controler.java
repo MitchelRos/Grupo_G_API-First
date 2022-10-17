@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class Controler {
 	private HashMap<Integer, Student> studentList = new HashMap<>();
 	private HashMap<Integer, Curs> cursList = new HashMap<>();
-
 	// private HashMap<Integer, UF> ufList = new HashMap<>();
 
 	// Te muestra en web el html cuanod pones "..../" al final de local host
@@ -29,6 +27,7 @@ public class Controler {
 		studentList = GenerateFakeData.generateStudents();
 		return studentList;
 	}
+
 
 	@GetMapping("cursos")
 	public HashMap<Integer, Curs> getCursos() {
