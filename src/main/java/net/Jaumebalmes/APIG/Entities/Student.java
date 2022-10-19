@@ -1,12 +1,21 @@
-package net.Jaumebalmes.APIG;
+package net.Jaumebalmes.APIG.Entities;
 
-class Student{
-	private int id;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Student{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 	private String name;
 	private String surname;
 	private String email;
 	private String grup;
-    public Student(int id, String name, String surname, String email, String grup) {
+	
+	public Student(int id, String name, String surname, String email, String grup) {
         super();
         this.id = id;
         this.name = name;
@@ -18,8 +27,8 @@ class Student{
     public Student() {
         super();
         this.id = 0;
-        this.name = "";
-        this.surname = "";
+        this.name = "Eje";
+        this.surname = "EJEm";
         this.email = "example@example.com";
         this.grup = "DAW2";
     }
