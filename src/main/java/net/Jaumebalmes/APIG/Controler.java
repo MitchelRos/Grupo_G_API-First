@@ -4,12 +4,16 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-
 @RestController
 public class Controler {
+	@Autowired // = new StudentRepository()
+	StudentRepository studentRep;
 	private HashMap<Integer, Student> studentList = new HashMap<>();
 	private HashMap<Integer, Curs> cursList = new HashMap<>();
 	// private HashMap<Integer, UF> ufList = new HashMap<>();
@@ -23,22 +27,11 @@ public class Controler {
 
 	// Te muestra cuando pones "..../students" a todos los alumnos
 	@GetMapping("students")
-	public HashMap<Integer, Student> getStudents() {
-		studentList = GenerateFakeData.generateStudents();
-		return studentList;
-	}
-
-
-	@GetMapping("cursos")
-	public HashMap<Integer, Curs> getCursos() {
-		cursList = GenerateFakeData.generateCurs();
-		return cursList;
-	}
-
-	@GetMapping("cursos/{nId}")
-	public Curs getCurs(@PathVariable int nId) {
-		cursList = GenerateFakeData.generateCurs();
-		return cursList.get(nId);
+	public List<Student> getStudents() {
+		List<Student> st1List = studentRep.findAll();
+		return st1List;
+		//studentList = GenerateFakeData.generateStudents();
+		//return studentList;
 	}
 
 	@GetMapping("students/{mGroup}")
@@ -58,10 +51,24 @@ public class Controler {
 	// Te muestra al poner un id al final del link el alumno en concreto
 	@GetMapping("student/{nId}")
 	public Student getStudent(@PathVariable int nId) {
-		studentList = GenerateFakeData.generateStudents();
-		return studentList.get(nId);
+		Student st1 = studentRep.findById(nId).get();
+		return st1;
+		// studentList = GenerateFakeData.generateStudents();
+		// return studentList.get(nId);
 	}
 
+
+	@GetMapping("cursos")
+	public HashMap<Integer, Curs> getCursos() {
+		cursList = GenerateFakeData.generateCurs();
+		return cursList;
+	}
+
+	@GetMapping("cursos/{nId}")
+	public Curs getCurs(@PathVariable int nId) {
+		cursList = GenerateFakeData.generateCurs();
+		return cursList.get(nId);
+	}
 	// Te devuelve el string del archivo que has puesto dentro cuando lo llamas
 	private String htmlString(String link) {
 		StringBuilder html = new StringBuilder();

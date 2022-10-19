@@ -1,6 +1,14 @@
 package net.Jaumebalmes.APIG;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity // taula db
 public class Curs {
+    @Id // clau taula de la db
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String cicle;
     private int curs;
