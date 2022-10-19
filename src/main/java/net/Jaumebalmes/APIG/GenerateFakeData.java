@@ -2,6 +2,9 @@ package net.Jaumebalmes.APIG;
 
 import java.util.HashMap;
 
+import net.Jaumebalmes.APIG.Entities.Curs;
+import net.Jaumebalmes.APIG.Entities.Student;
+
 public class GenerateFakeData {
     // crea los datos de los alumnos
     private static HashMap<Integer, Student> studentList = new HashMap<>();

@@ -1,4 +1,5 @@
 package net.Jaumebalmes.APIG;
+import net.Jaumebalmes.APIG.Entities.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -8,6 +9,9 @@ import java.util.HashMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+import net.Jaumebalmes.APIG.Entities.Curs;
+import net.Jaumebalmes.APIG.Entities.Student;
 
 @RestController
 public class Controler {
