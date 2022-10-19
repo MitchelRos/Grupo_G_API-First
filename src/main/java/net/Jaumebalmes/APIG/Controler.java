@@ -1,24 +1,30 @@
 package net.Jaumebalmes.APIG;
-import net.Jaumebalmes.APIG.Entities.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.Jaumebalmes.APIG.Entities.Curs;
 import net.Jaumebalmes.APIG.Entities.Student;
+import net.Jaumebalmes.APIG.Repository.CursRepository;
+import net.Jaumebalmes.APIG.Repository.StudentRepository;
 
 @RestController
 public class Controler {
-	private HashMap<Integer, Student> studentList = new HashMap<>();
-	private HashMap<Integer, Curs> cursList = new HashMap<>();
+	@Autowired // = new StudentRepository()
+	StudentRepository studentRep;
 
-	// private HashMap<Integer, UF> ufList = new HashMap<>();
+	@Autowired // = new StudentRepository()
+	CursRepository cursRep;
 
 	// Te muestra en web el html cuanod pones "..../" al final de local host
 	@GetMapping("/")
@@ -29,42 +35,45 @@ public class Controler {
 
 	// Te muestra cuando pones "..../students" a todos los alumnos
 	@GetMapping("students")
-	public HashMap<Integer, Student> getStudents() {
-		studentList = GenerateFakeData.generateStudents();
-		return studentList;
-	}
-
-	@GetMapping("cursos")
-	public HashMap<Integer, Curs> getCursos() {
-		cursList = GenerateFakeData.generateCurs();
-		return cursList;
-	}
-
-	@GetMapping("cursos/{nId}")
-	public Curs getCurs(@PathVariable int nId) {
-		cursList = GenerateFakeData.generateCurs();
-		return cursList.get(nId);
-	}
-
-	@GetMapping("students/{mGroup}")
-	public HashMap<Integer, Student> getStudentsByGroup(@PathVariable String mGroup) {
-		studentList = GenerateFakeData.generateStudents();
-		// Lista auxiliar para devolver solo la query por grupo
-		HashMap<Integer, Student> groupAnimeList = new HashMap<>();
-		for (Student s : studentList.values()) {
-			// La busqueda se hace en mayuscula para evitar diferencias entre mayus y minus.
-			if ((s.getGrup().toUpperCase()).matches((mGroup.toUpperCase()))) {
-				groupAnimeList.put(s.getId(), s);
-			}
-		}
-		return groupAnimeList;
+	public List<Student> getStudents() {
+		List<Student> st1List = studentRep.findAll();
+		return st1List;
 	}
 
 	// Te muestra al poner un id al final del link el alumno en concreto
 	@GetMapping("student/{nId}")
 	public Student getStudent(@PathVariable int nId) {
-		studentList = GenerateFakeData.generateStudents();
-		return studentList.get(nId);
+		Student st1 = studentRep.findById(nId).get();
+		return st1;
+	}
+
+	// Te muestra cuando pones "..../cursos" a todos los cursos
+	@GetMapping("cursos")
+	public List<Curs> getCursos() {
+		List<Curs> cursList = cursRep.findAll();
+		return cursList;
+	}
+
+	// Te muestra al poner un id al final del link el curso en concreto
+	@GetMapping("cursos/{nId}")
+	public Curs getCurs(@PathVariable int nId) {
+		Curs c1 = cursRep.findById(nId).get();
+		return c1;
+	}
+
+	// Te muestra al poner /students?grup los alumunos de ese grupo
+	@RequestMapping(value = "/students", params = "grup")
+	public List<Student> getStudentGroup(@RequestParam(defaultValue = "daw2") String grup) {
+		List<Student> st1List = studentRep.findAll();
+		List<Student> st1FilterList = new ArrayList<>();
+		for (Student s : st1List) {
+			// if ((s.getGrup().toUpperCase()).contains((grup.toUpperCase()))) {
+			if ((s.getGrup().toUpperCase()).matches((grup.toUpperCase()))) {
+				// La busqueda se hace en mayuscula para evitar diferencias entre mayus y minus.
+				st1FilterList.add(s);
+			}
+		}
+		return st1FilterList;
 	}
 
 	// Te devuelve el string del archivo que has puesto dentro cuando lo llamas
