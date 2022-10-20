@@ -26,3 +26,6 @@ INSERT INTO STUDENT VALUES (13,'luis@mail.com','ASIX1','Luis','Chavero');
 INSERT INTO STUDENT VALUES (14,'jesus@mail.com','ASIX2','Jesus','Gonzalez');
 INSERT INTO STUDENT VALUES (15,'cristobal@mail.com','SMX1','Cristobal','Martin');
 INSERT INTO STUDENT VALUES (16,'chema@mail.com','SMX2','Chema','Rodriguez');
+
+                            /*ID  	ALUMNOID  	FECHA  	HORA_ENTRADA  	HORA_SALIDA  	MODULOID */
+INSERT INTO ASISTENCIA VALUES (1,4,'2022-01-23','2022-01-23 13:10:11','2022-01-23 14:10:11',1);
