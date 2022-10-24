@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import net.Jaumebalmes.APIG.Entities.Asistencia;
 import net.Jaumebalmes.APIG.Entities.Curs;
 import net.Jaumebalmes.APIG.Entities.Student;
+import net.Jaumebalmes.APIG.Repository.AsistenciaRepository;
 import net.Jaumebalmes.APIG.Repository.CursRepository;
 import net.Jaumebalmes.APIG.Repository.StudentRepository;
 
@@ -25,6 +27,9 @@ public class Controler {
 
 	@Autowired // = new StudentRepository()
 	CursRepository cursRep;
+
+	@Autowired // = new AsistenciaRepository()
+	AsistenciaRepository asisRep;
 
 	// Te muestra en web el html cuanod pones "..../" al final de local host
 	@GetMapping("/")
@@ -69,6 +74,43 @@ public class Controler {
 		for (Student s : st1List) {
 			// if ((s.getGrup().toUpperCase()).contains((grup.toUpperCase()))) {
 			if ((s.getGrup().toUpperCase()).matches((grup.toUpperCase()))) {
+				// La busqueda se hace en mayuscula para evitar diferencias entre mayus y minus.
+				st1FilterList.add(s);
+			}
+		}
+		return st1FilterList;
+	}
+
+	@GetMapping("asistencias")
+	public List<Asistencia> getAsistencias() {
+		List<Asistencia> aList = asisRep.findAll();
+		return aList;
+	}
+
+	// Al poner /asistencia?student=1&modul=1 la asistencia de un alumno un modulo
+	@RequestMapping(value = "/asistencia", params = { "student", "modul" })
+	public List<Asistencia> getAsistenica(@RequestParam int student, int modul) {
+		List<Asistencia> asisList = asisRep.findAll();
+		List<Asistencia> st1FilterList = new ArrayList<>();
+		for (Asistencia s : asisList) {
+			// if ((s.getGrup().toUpperCase()).contains((grup.toUpperCase()))) {
+			if (s.getModuloid() == modul) {
+				if ((s.getAlumnoid() == student)) {
+					st1FilterList.add(s);
+				}
+			}
+		}
+		return st1FilterList;
+	}
+
+	// Al poner /asistencia?smodul=1 la asistencia de un modulo
+	@RequestMapping(value = "/asistencia", params = "modul")
+	public List<Asistencia> getAsistenica(@RequestParam int modul) {
+		List<Asistencia> asisList = asisRep.findAll();
+		List<Asistencia> st1FilterList = new ArrayList<>();
+		for (Asistencia s : asisList) {
+			// if ((s.getGrup().toUpperCase()).contains((grup.toUpperCase()))) {
+			if (s.getModuloid() == modul) {
 				// La busqueda se hace en mayuscula para evitar diferencias entre mayus y minus.
 				st1FilterList.add(s);
 			}
