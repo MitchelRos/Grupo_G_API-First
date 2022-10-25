@@ -20,6 +20,9 @@ import net.Jaumebalmes.APIG.Repository.AsistenciaRepository;
 import net.Jaumebalmes.APIG.Repository.CursRepository;
 import net.Jaumebalmes.APIG.Repository.StudentRepository;
 
+
+// Es el controlador principal
+
 @RestController
 public class Controler {
 	@Autowired // = new StudentRepository()
