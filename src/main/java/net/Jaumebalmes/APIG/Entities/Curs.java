@@ -9,11 +9,11 @@ import javax.persistence.Id;
 public class Curs {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private String cicle;
-    private int curs;
+    private long curs;
     private String grup;
-    private int aula;
+    private long aula;
 
     public Curs() {
         this.id = 0;
@@ -23,7 +23,7 @@ public class Curs {
         this.aula = 43;
     }
 
-    public Curs(int id, String cicle, int curs, String grup, int aula) {
+    public Curs(long id, String cicle, long curs, String grup, long aula) {
         this.id = id;
         this.cicle = cicle;
         this.curs = curs;
@@ -31,7 +31,7 @@ public class Curs {
         this.aula = aula;
     }
 
-    public Curs(int id, String cicle, int curs, int aula) {
+    public Curs(long id, String cicle, long curs, long aula) {
         this.id = id;
         this.cicle = cicle;
         this.curs = curs;
@@ -40,11 +40,11 @@ public class Curs {
     }
 
     // GETTERS
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -56,11 +56,11 @@ public class Curs {
         this.cicle = cicle;
     }
 
-    public int getCurs() {
+    public long getCurs() {
         return curs;
     }
 
-    public void setCurs(int curs) {
+    public void setCurs(long curs) {
         this.curs = curs;
     }
 
@@ -72,11 +72,11 @@ public class Curs {
         this.grup = grup;
     }
 
-    public int getAula() {
+    public long getAula() {
         return aula;
     }
 
-    public void setAula(int aula) {
+    public void setAula(long aula) {
         this.aula = aula;
     }
 
