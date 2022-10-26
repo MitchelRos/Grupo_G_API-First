@@ -150,7 +150,7 @@ public class Controler {
 	
 	//DELETE
 	@RequestMapping(value = "student/delete/{nId}", method = RequestMethod.DELETE)
-	public String deleteClient(@PathVariable int nId) {
+	public String deleteClient(@PathVariable long nId) {
 	    Student st1 = studentRep.findById(nId).get();
 		studentRep.deleteById(nId);
 		String htmlHardcode ="<br><a href='/'>Retorna<a/>";
