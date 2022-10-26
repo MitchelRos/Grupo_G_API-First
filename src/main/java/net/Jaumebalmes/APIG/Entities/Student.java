@@ -9,13 +9,13 @@ import javax.persistence.Id;
 public class Student{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 	private String name;
 	private String surname;
 	private String email;
 	private String grup;
 	
-	public Student(int id, String name, String surname, String email, String grup) {
+	public Student(long id, String name, String surname, String email, String grup) {
         super();
         this.id = id;
         this.name = name;
@@ -33,11 +33,11 @@ public class Student{
         this.grup = "DAW2";
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -50,7 +50,7 @@ public class Controler {
 
 	// Te muestra al poner un id al final del link el alumno en concreto
 	@GetMapping("student/{nId}")
-	public Student getStudent(@PathVariable int nId) {
+	public Student getStudent(@PathVariable long nId) {
 		Student st1 = studentRep.findById(nId).get();
 		return st1;
 	}
@@ -64,7 +64,7 @@ public class Controler {
 
 	// Te muestra al poner un id al final del link el curso en concreto
 	@GetMapping("cursos/{nId}")
-	public Curs getCurs(@PathVariable int nId) {
+	public Curs getCurs(@PathVariable long nId) {
 		Curs c1 = cursRep.findById(nId).get();
 		return c1;
 	}
@@ -92,7 +92,7 @@ public class Controler {
 
 	// Al poner /asistencia?student=1&modul=1 la asistencia de un alumno un modulo
 	@RequestMapping(value = "/asistencia", params = { "student", "modul" })
-	public List<Asistencia> getAsistenica(@RequestParam int student, int modul) {
+	public List<Asistencia> getAsistenica(@RequestParam long student, long modul) {
 		List<Asistencia> asisList = asisRep.findAll();
 		List<Asistencia> st1FilterList = new ArrayList<>();
 		for (Asistencia s : asisList) {
@@ -108,7 +108,7 @@ public class Controler {
 
 	// Al poner /asistencia?smodul=1 la asistencia de un modulo
 	@RequestMapping(value = "/asistencia", params = "modul")
-	public List<Asistencia> getAsistenica(@RequestParam int modul) {
+	public List<Asistencia> getAsistenica(@RequestParam long modul) {
 		List<Asistencia> asisList = asisRep.findAll();
 		List<Asistencia> st1FilterList = new ArrayList<>();
 		for (Asistencia s : asisList) {

@@ -4,7 +4,7 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 import net.Jaumebalmes.APIG.Entities.Student;
 
-public interface StudentRepository extends CrudRepository<Student, Integer> {
+public interface StudentRepository extends CrudRepository<Student, Long> {
 
     public List<Student> findAll();
 }

@@ -10,15 +10,15 @@ import javax.persistence.Id;
 public class Asistencia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private LocalDateTime fecha;
     private LocalDateTime horaEntrada;
     private LocalDateTime horaSalida;
-    private int moduloid;
-    private int alumnoid;
+    private long moduloid;
+    private long alumnoid;
 
-    public Asistencia(int id, LocalDateTime fecha, LocalDateTime horaEntrada, LocalDateTime horaSalida, int moduloid,
-            int alumnoid) {
+    public Asistencia(long id, LocalDateTime fecha, LocalDateTime horaEntrada, LocalDateTime horaSalida, long moduloid,
+            long alumnoid) {
         this.id = id;
         this.fecha = fecha;
         this.horaEntrada = horaEntrada;
@@ -36,7 +36,7 @@ public class Asistencia {
         this.alumnoid = 0;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -68,7 +68,7 @@ public class Asistencia {
         this.horaSalida = horaSalida;
     }
 
-    public int getModuloid() {
+    public long getModuloid() {
         return moduloid;
     }
 
@@ -76,7 +76,7 @@ public class Asistencia {
         this.moduloid = moduloid;
     }
 
-    public int getAlumnoid() {
+    public long getAlumnoid() {
         return alumnoid;
     }
 
