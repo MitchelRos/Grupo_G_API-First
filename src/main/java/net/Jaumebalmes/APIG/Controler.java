@@ -9,7 +9,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -118,6 +121,46 @@ public class Controler {
 		return st1FilterList;
 	}
 
+	//POSTMAN
+	
+	//MODIFY
+	// @PostMapping(value= "Student/modify")
+	@RequestMapping(value = "student/modify", method = RequestMethod.PUT)
+	public Student altaClient(@RequestBody Student student) {
+	//Save modifica no inserta nuevos
+	    studentRep.save(student);
+	return student;
+
+	}
+	//ADD
+	// @PostMapping("/addMenu")
+
+	
+
+	@PostMapping("student/add")
+	public Student student(@RequestBody Student student) {
+		
+		studentRep.save(student);
+		
+		return student;
+	}
+	// public Student student(@RequestBody final Student menu @Valid ) {
+	//    return studentRep.save(menu);
+	// }
+	
+	//DELETE
+	@RequestMapping(value = "student/delete/{nId}", method = RequestMethod.DELETE)
+	public String deleteClient(@PathVariable int nId) {
+	    Student st1 = studentRep.findById(nId).get();
+		studentRep.deleteById(nId);
+		String htmlHardcode ="<br><a href='/'>Retorna<a/>";
+		return "Deleted "+st1.toString()+htmlHardcode;
+
+	}
+	
+	
+	
+	
 	// Te devuelve el string del archivo que has puesto dentro cuando lo llamas
 	private String htmlString(String link) {
 		StringBuilder html = new StringBuilder();
